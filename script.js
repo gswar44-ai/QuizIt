@@ -1,14 +1,12 @@
 // ==========================================
-// QUIZ IT — QUIZ ENGINE
+// QUIZ IT — COMPLETE QUIZ ENGINE
 // ==========================================
 
-const questions = [
-
-    const quizCategories = {
+const quizCategories = {
 
     science: [
         {
-            question: "Which gas do plants use for photosynthesis?",
+            question: "Which gas do plants mainly use for photosynthesis?",
             options: ["Oxygen", "Nitrogen", "Carbon dioxide", "Hydrogen"],
             answer: 2
         },
@@ -18,7 +16,7 @@ const questions = [
             answer: 1
         },
         {
-            question: "Which organ pumps blood through the body?",
+            question: "Which organ pumps blood around the human body?",
             options: ["Brain", "Lungs", "Heart", "Kidney"],
             answer: 2
         },
@@ -56,7 +54,7 @@ const questions = [
             answer: 1
         },
         {
-            question: "What is the value of 5 + 7 × 2?",
+            question: "What is 5 + 7 × 2?",
             options: ["24", "19", "17", "14"],
             answer: 1
         }
@@ -79,7 +77,7 @@ const questions = [
             answer: 2
         },
         {
-            question: "Which planet is famous for its prominent rings?",
+            question: "Which planet is famous for its rings?",
             options: ["Mars", "Saturn", "Venus", "Mercury"],
             answer: 1
         },
@@ -93,7 +91,7 @@ const questions = [
     geography: [
         {
             question: "What is the largest ocean on Earth?",
-            options: ["Atlantic", "Indian", "Arctic", "Pacific"],
+            options: ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"],
             answer: 3
         },
         {
@@ -107,18 +105,28 @@ const questions = [
             answer: 1
         },
         {
-            question: "Which is the longest river in the world traditionally recognized?",
-            options: ["Amazon", "Nile", "Yangtze", "Ganges"],
-            answer: 1
-        },
-        {
             question: "How many continents are there?",
             options: ["5", "6", "7", "8"],
             answer: 2
+        },
+        {
+            question: "Which is the largest country by area?",
+            options: ["China", "USA", "Canada", "Russia"],
+            answer: 3
         }
     ],
 
     history: [
+        {
+            question: "When did India gain independence?",
+            options: ["1945", "1946", "1947", "1950"],
+            answer: 2
+        },
+        {
+            question: "Who built the Taj Mahal?",
+            options: ["Akbar", "Shah Jahan", "Aurangzeb", "Babur"],
+            answer: 1
+        },
         {
             question: "Who was the first Prime Minister of independent India?",
             options: [
@@ -128,21 +136,6 @@ const questions = [
                 "B. R. Ambedkar"
             ],
             answer: 1
-        },
-        {
-            question: "Who built the Taj Mahal?",
-            options: [
-                "Akbar",
-                "Shah Jahan",
-                "Aurangzeb",
-                "Babur"
-            ],
-            answer: 1
-        },
-        {
-            question: "When did India gain independence?",
-            options: ["1945", "1946", "1947", "1950"],
-            answer: 2
         },
         {
             question: "Who is known as the Father of the Nation in India?",
@@ -168,11 +161,6 @@ const questions = [
 
     gk: [
         {
-            question: "How many continents are there?",
-            options: ["5", "6", "7", "8"],
-            answer: 2
-        },
-        {
             question: "Which is the largest mammal?",
             options: ["Elephant", "Blue Whale", "Giraffe", "Shark"],
             answer: 1
@@ -191,17 +179,23 @@ const questions = [
             question: "Which is the fastest land animal?",
             options: ["Lion", "Horse", "Cheetah", "Tiger"],
             answer: 2
+        },
+        {
+            question: "How many continents are there?",
+            options: ["5", "6", "7", "8"],
+            answer: 2
         }
     ]
-
 };
 
 
-let questions = quizCategories.gk;
-];
+// ==========================================
+// QUIZ STATE
+// ==========================================
 
+let questions = quizCategories.gk;
 let currentQuestion = 0;
-let selectedAnswers = new Array(questions.length).fill(null);
+let selectedAnswers = [];
 let quizStarted = false;
 
 
@@ -209,17 +203,34 @@ let quizStarted = false;
 // START QUIZ
 // ==========================================
 
-function startQuiz() {
+function startQuiz(category = "gk") {
 
-    quizStarted = true;
+    if (quizCategories[category]) {
+        questions = quizCategories[category];
+    }
 
     currentQuestion = 0;
 
     selectedAnswers =
         new Array(questions.length).fill(null);
 
-    showQuiz();
+    quizStarted = true;
 
+    showQuiz();
+}
+
+
+// ==========================================
+// CATEGORY BUTTON
+// ==========================================
+
+function openCategory(category) {
+
+    if (!quizCategories[category]) {
+        return;
+    }
+
+    startQuiz(category);
 }
 
 
@@ -229,17 +240,14 @@ function startQuiz() {
 
 function showQuiz() {
 
-    const quizArea =
+    let quizArea =
         document.getElementById("quizArea");
 
     if (!quizArea) {
-
         createQuizInterface();
-
     }
 
     renderQuestion();
-
 }
 
 
@@ -254,14 +262,11 @@ function createQuizInterface() {
 
     if (!main) return;
 
-
     const quizArea =
         document.createElement("section");
 
     quizArea.id = "quizArea";
-
     quizArea.className = "quiz-area";
-
 
     quizArea.innerHTML = `
 
@@ -277,7 +282,6 @@ function createQuizInterface() {
 
         </div>
 
-
         <div class="progress-container">
 
             <div
@@ -287,7 +291,6 @@ function createQuizInterface() {
 
         </div>
 
-
         <div class="question-card">
 
             <h2 id="questionText"></h2>
@@ -296,33 +299,33 @@ function createQuizInterface() {
 
         </div>
 
-
         <div class="quiz-navigation">
 
             <button
                 id="previousButton"
                 onclick="previousQuestion()">
+
                 ← Previous
+
             </button>
 
             <button
                 id="nextButton"
                 onclick="nextQuestion()">
+
                 Next →
+
             </button>
 
         </div>
 
     `;
 
-
     main.innerHTML = "";
 
     main.appendChild(quizArea);
 
-
     addQuizStyles();
-
 }
 
 
@@ -335,50 +338,33 @@ function renderQuestion() {
     const question =
         questions[currentQuestion];
 
-
     const questionText =
-        document.getElementById(
-            "questionText"
-        );
+        document.getElementById("questionText");
 
     const optionsContainer =
-        document.getElementById(
-            "optionsContainer"
-        );
+        document.getElementById("optionsContainer");
 
     const counter =
-        document.getElementById(
-            "questionCounter"
-        );
+        document.getElementById("questionCounter");
 
     const progress =
-        document.getElementById(
-            "progressBar"
-        );
+        document.getElementById("progressBar");
 
     const previous =
-        document.getElementById(
-            "previousButton"
-        );
-
+        document.getElementById("previousButton");
 
     if (!questionText) return;
-
 
     questionText.textContent =
         question.question;
 
-
     counter.textContent =
         `Question ${currentQuestion + 1} / ${questions.length}`;
-
 
     progress.style.width =
         `${((currentQuestion + 1) / questions.length) * 100}%`;
 
-
     optionsContainer.innerHTML = "";
-
 
     question.options.forEach(
         (option, index) => {
@@ -392,20 +378,16 @@ function renderQuestion() {
             button.textContent =
                 option;
 
-
             if (
                 selectedAnswers[currentQuestion]
                 === index
             ) {
 
-                button.classList.add(
-                    "selected"
-                );
+                button.classList.add("selected");
 
             }
 
-
-            button.onclick = () => {
+            button.onclick = function () {
 
                 selectedAnswers[currentQuestion] =
                     index;
@@ -414,26 +396,20 @@ function renderQuestion() {
 
             };
 
-
-            optionsContainer.appendChild(
-                button
-            );
+            optionsContainer.appendChild(button);
 
         }
     );
 
-
     previous.disabled =
         currentQuestion === 0;
 
-
     updateScorePreview();
-
 }
 
 
 // ==========================================
-// NEXT QUESTION
+// NEXT
 // ==========================================
 
 function nextQuestion() {
@@ -452,12 +428,11 @@ function nextQuestion() {
         showResults();
 
     }
-
 }
 
 
 // ==========================================
-// PREVIOUS QUESTION
+// PREVIOUS
 // ==========================================
 
 function previousQuestion() {
@@ -469,12 +444,11 @@ function previousQuestion() {
         renderQuestion();
 
     }
-
 }
 
 
 // ==========================================
-// CALCULATE SCORE
+// SCORE
 // ==========================================
 
 function calculateScore() {
@@ -485,9 +459,7 @@ function calculateScore() {
         (answer, index) => {
 
             if (answer === null) {
-
                 return;
-
             }
 
             if (
@@ -506,33 +478,21 @@ function calculateScore() {
         }
     );
 
-
     return score;
-
 }
 
 
-// ==========================================
-// SCORE PREVIEW
-// ==========================================
-
 function updateScorePreview() {
 
-    const score =
-        calculateScore();
-
     const display =
-        document.getElementById(
-            "scoreDisplay"
-        );
+        document.getElementById("scoreDisplay");
 
     if (display) {
 
         display.textContent =
-            `Score: ${score}`;
+            `Score: ${calculateScore()}`;
 
     }
-
 }
 
 
@@ -545,7 +505,6 @@ function showResults() {
     let correct = 0;
     let incorrect = 0;
     let unattempted = 0;
-
 
     selectedAnswers.forEach(
         (answer, index) => {
@@ -570,20 +529,16 @@ function showResults() {
         }
     );
 
-
     const score =
         calculateScore();
-
 
     const percentage =
         Math.round(
             (correct / questions.length) * 100
         );
 
-
     const main =
         document.querySelector("main");
-
 
     main.innerHTML = `
 
@@ -604,7 +559,6 @@ function showResults() {
             <p>
                 Final Score
             </p>
-
 
             <div class="result-stats">
 
@@ -630,7 +584,6 @@ function showResults() {
 
             </div>
 
-
             <button
                 class="primary-btn"
                 onclick="restartQuiz()">
@@ -638,7 +591,6 @@ function showResults() {
                 🔄 Try Again
 
             </button>
-
 
             <button
                 class="secondary-btn"
@@ -652,9 +604,7 @@ function showResults() {
 
     `;
 
-
     saveQuizResult(score, correct);
-
 }
 
 
@@ -670,7 +620,6 @@ function restartQuiz() {
         new Array(questions.length).fill(null);
 
     showQuiz();
-
 }
 
 
@@ -683,21 +632,16 @@ function saveQuizResult(score, correct) {
     const result = {
 
         score: score,
-
         correct: correct,
-
         total: questions.length,
-
         date: new Date().toLocaleString()
 
     };
-
 
     localStorage.setItem(
         "quizItLastResult",
         JSON.stringify(result)
     );
-
 }
 
 
@@ -711,16 +655,15 @@ function addQuizStyles() {
         document.getElementById(
             "quizEngineStyles"
         )
-    ) return;
-
+    ) {
+        return;
+    }
 
     const style =
         document.createElement("style");
 
-
     style.id =
         "quizEngineStyles";
-
 
     style.textContent = `
 
@@ -812,6 +755,7 @@ function addQuizStyles() {
             background: #6437ff;
             color: white;
             font-weight: 700;
+            cursor: pointer;
         }
 
         .quiz-navigation button:disabled {
@@ -902,14 +846,12 @@ function addQuizStyles() {
 
     `;
 
-
     document.head.appendChild(style);
-
 }
 
 
 // ==========================================
-// EXISTING HOME FUNCTIONS
+// HOME FUNCTIONS
 // ==========================================
 
 function scrollToQuizzes() {
@@ -924,34 +866,13 @@ function scrollToQuizzes() {
         });
 
     }
-
-}
-
-
-function openCategory(category) {
-
-    if (!quizCategories[category]) {
-        return;
-    }
-
-    questions = quizCategories[category];
-
-    currentQuestion = 0;
-
-    selectedAnswers =
-        new Array(questions.length).fill(null);
-
-    startQuiz();
-}
-
-    if (!categoryQuestions[category]) {
-        return;
-    }
-
-    startQuiz();
 }
 
 
 function showLoginMessage() {
-    alert("Login will be connected later.");
-}
+
+    alert(
+        "Login will be connected later."
+    );
+
+        }
