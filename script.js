@@ -967,3 +967,45 @@ function showProgress() {
         "Overall Accuracy: " + accuracy + "%"
     );
 }
+
+function showProgress() {
+
+    const leaderboard =
+        JSON.parse(
+            localStorage.getItem("quizItLeaderboard")
+        ) || [];
+
+    if (leaderboard.length === 0) {
+        alert("No progress yet. Complete a quiz first!");
+        return;
+    }
+
+    let attempts = leaderboard.length;
+    let totalCorrect = 0;
+    let totalQuestions = 0;
+    let bestScore = leaderboard[0].score;
+
+    leaderboard.forEach(result => {
+        totalCorrect += result.correct;
+        totalQuestions += result.total;
+
+        if (result.score > bestScore) {
+            bestScore = result.score;
+        }
+    });
+
+    const accuracy =
+        totalQuestions > 0
+            ? Math.round(
+                (totalCorrect / totalQuestions) * 100
+            )
+            : 0;
+
+    alert(
+        "📈 QUIZ IT PROGRESS\n\n" +
+        "Quiz Attempts: " + attempts + "\n" +
+        "Questions: " + totalQuestions + "\n" +
+        "Best Score: " + bestScore + "\n" +
+        "Accuracy: " + accuracy + "%"
+    );
+}
