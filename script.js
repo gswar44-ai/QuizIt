@@ -930,14 +930,19 @@ function scrollToQuizzes() {
 
 function openCategory(category) {
 
-    const categoryQuestions = {
-        science: questions,
-        mathematics: questions,
-        space: questions,
-        geography: questions,
-        history: questions,
-        gk: questions
-    };
+    if (!quizCategories[category]) {
+        return;
+    }
+
+    questions = quizCategories[category];
+
+    currentQuestion = 0;
+
+    selectedAnswers =
+        new Array(questions.length).fill(null);
+
+    startQuiz();
+}
 
     if (!categoryQuestions[category]) {
         return;
