@@ -801,12 +801,20 @@ function scrollToQuizzes() {
 
 function openCategory(category) {
 
-    alert(
-        category.charAt(0).toUpperCase() +
-        category.slice(1) +
-        " quiz will be connected next."
-    );
+    const categoryQuestions = {
+        science: questions,
+        mathematics: questions,
+        space: questions,
+        geography: questions,
+        history: questions,
+        gk: questions
+    };
 
+    if (!categoryQuestions[category]) {
+        return;
+    }
+
+    startQuiz();
 }
 
 
