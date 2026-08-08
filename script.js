@@ -819,9 +819,5 @@ function openCategory(category) {
 
 
 function showLoginMessage() {
-
-    alert(
-        "Login will be connected after the core quiz engine is tested."
-    );
-
-        }
+    alert("Login will be connected later.");
+}
