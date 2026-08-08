@@ -1,1 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Quiz It | Play • Compete • Conquer</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+        🧠 <span>Quiz It</span>
+    </div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#quizzes">Quizzes</a>
+        <a href="#features">Features</a>
+    </nav>
+
+    <button
+        class="login-btn"
+        onclick="showLoginMessage()">
+        Login
+    </button>
+
+</header>
+
+
+<main>
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <span class="badge">
+            🏆 THE ULTIMATE QUIZ PLATFORM
+        </span>
+
+        <h1>
+            Play.
+            <span>Compete.</span>
+            Conquer.
+        </h1>
+
+        <p>
+            Test your knowledge, challenge yourself,
+            and climb the leaderboard with Quiz It.
+        </p>
+
+        <div class="hero-buttons">
+
+            <button
+                class="primary-btn"
+                onclick="startQuiz()">
+                🚀 Start Quiz
+            </button>
+
+            <button
+                class="secondary-btn"
+                onclick="scrollToQuizzes()">
+                Explore Quizzes →
+            </button>
+
+        </div>
+
+        <div class="stats">
+
+            <div>
+                <strong>10K+</strong>
+                <span>Questions</span>
+            </div>
+
+            <div>
+                <strong>50+</strong>
+                <span>Topics</span>
+            </div>
+
+            <div>
+                <strong>5</strong>
+                <span>Difficulty Levels</span>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="hero-card">
+
+        <div class="floating-icon">🧠</div>
+
+        <h2>
+            Ready to test yourself?
+        </h2>
+
+        <p>
+            Every question is a new challenge.
+        </p>
+
+        <div class="score-preview">
+
+            <span>🏆 Best Score</span>
+
+            <strong>+95</strong>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section
+    class="categories"
+    id="quizzes">
+
+    <div class="section-title">
+
+        <span>EXPLORE</span>
+
+        <h2>
+            Choose Your Challenge
+        </h2>
+
+        <p>
+            Pick a category and start competing.
+        </p>
+
+    </div>
+
+
+    <div class="category-grid">
+
+        <article class="category-card">
+            <div>🧪</div>
+            <h3>Science</h3>
+            <p>Explore the world of science.</p>
+            <button onclick="openCategory('science')">
+                Play →
+            </button>
+        </article>
+
+
+        <article class="category-card">
+            <div>➗</div>
+            <h3>Mathematics</h3>
+            <p>Challenge your mathematical skills.</p>
+            <button onclick="openCategory('mathematics')">
+                Play →
+            </button>
+        </article>
+
+
+        <article class="category-card">
+            <div>🚀</div>
+            <h3>Space & Astronomy</h3>
+            <p>Explore planets and the universe.</p>
+            <button onclick="openCategory('space')">
+                Play →
+            </button>
+        </article>
+
+
+        <article class="category-card">
+            <div>🌍</div>
+            <h3>Geography</h3>
+            <p>Test your knowledge of our world.</p>
+            <button onclick="openCategory('geography')">
+                Play →
+            </button>
+        </article>
+
+
+        <article class="category-card">
+            <div>📜</div>
+            <h3>History</h3>
+            <p>Travel through time.</p>
+            <button onclick="openCategory('history')">
+                Play →
+            </button>
+        </article>
+
+
+        <article class="category-card">
+            <div>🧠</div>
+            <h3>General Knowledge</h3>
+            <p>How much do you really know?</p>
+            <button onclick="openCategory('gk')">
+                Play →
+            </button>
+        </article>
+
+    </div>
+
+</section>
+
+
+<section
+    class="features"
+    id="features">
+
+    <div class="section-title">
+
+        <span>WHY QUIZ IT?</span>
+
+        <h2>
+            More Than Just Questions
+        </h2>
+
+    </div>
+
+
+    <div class="feature-grid">
+
+        <div class="feature">
+            <span>🎯</span>
+            <h3>Smart Scoring</h3>
+            <p>
+                Earn +5 for correct answers
+                and −3 for incorrect answers.
+            </p>
+        </div>
+
+        <div class="feature">
+            <span>🏆</span>
+            <h3>Leaderboard</h3>
+            <p>
+                Compete and see how you rank.
+            </p>
+        </div>
+
+        <div class="feature">
+            <span>📈</span>
+            <h3>Track Progress</h3>
+            <p>
+                Improve your performance
+                with every quiz.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+    <div>
+        <strong>🧠 Quiz It</strong>
+        <p>Play • Compete • Conquer</p>
+    </div>
+
+    <p>
+        © 2026 Quiz It. All rights reserved.
+    </p>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+          </html>
