@@ -899,3 +899,26 @@ function showLoginMessage() {
     );
 
         }
+function showLeaderboard() {
+
+    const leaderboard =
+        JSON.parse(
+            localStorage.getItem("quizItLeaderboard")
+        ) || [];
+
+    if (leaderboard.length === 0) {
+        alert("No scores yet. Complete a quiz first!");
+        return;
+    }
+
+    let message = "🏆 QUIZ IT LEADERBOARD\n\n";
+
+    leaderboard.forEach((result, index) => {
+
+        message +=
+            `${index + 1}. Score: ${result.score} | Correct: ${result.correct}/${result.total}\n`;
+
+    });
+
+    alert(message);
+}
