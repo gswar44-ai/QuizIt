@@ -630,6 +630,29 @@ function restartQuiz() {
 function saveQuizResult(score, correct) {
 
     const result = {
+        score: score,
+        correct: correct,
+        total: questions.length,
+        date: new Date().toLocaleString()
+    };
+
+    let leaderboard =
+        JSON.parse(localStorage.getItem("quizItLeaderboard")) || [];
+
+    leaderboard.push(result);
+
+    leaderboard.sort((a, b) => b.score - a.score);
+
+    leaderboard = leaderboard.slice(0, 10);
+
+    localStorage.setItem(
+        "quizItLeaderboard",
+        JSON.stringify(leaderboard)
+    );
+
+} {
+
+    const result = {
 
         score: score,
         correct: correct,
