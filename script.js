@@ -3,73 +3,202 @@
 // ==========================================
 
 const questions = [
-    {
-        question: "Which planet is known as the Red Planet?",
-        options: ["Earth", "Mars", "Jupiter", "Venus"],
-        answer: 1
-    },
-    {
-        question: "What is the SI unit of force?",
-        options: ["Joule", "Watt", "Newton", "Pascal"],
-        answer: 2
-    },
-    {
-        question: "Which gas do plants mainly use for photosynthesis?",
-        options: ["Oxygen", "Nitrogen", "Carbon dioxide", "Hydrogen"],
-        answer: 2
-    },
-    {
-        question: "What is 12 × 8?",
-        options: ["86", "96", "108", "112"],
-        answer: 1
-    },
-    {
-        question: "What is the largest ocean on Earth?",
-        options: [
-            "Atlantic Ocean",
-            "Indian Ocean",
-            "Arctic Ocean",
-            "Pacific Ocean"
-        ],
-        answer: 3
-    },
-    {
-        question: "Who is known as the Father of Physics?",
-        options: [
-            "Isaac Newton",
-            "Albert Einstein",
-            "Galileo Galilei",
-            "Archimedes"
-        ],
-        answer: 0
-    },
-    {
-        question: "What is the speed of light approximately?",
-        options: [
-            "3 × 10⁶ m/s",
-            "3 × 10⁸ m/s",
-            "3 × 10¹⁰ m/s",
-            "3 × 10⁴ m/s"
-        ],
-        answer: 1
-    },
-    {
-        question: "Which organ pumps blood around the human body?",
-        options: ["Lungs", "Brain", "Heart", "Kidney"],
-        answer: 2
-    },
-    {
-        question: "How many continents are there?",
-        options: ["5", "6", "7", "8"],
-        answer: 2
-    },
-    {
-        question: "What is the square root of 144?",
-        options: ["10", "11", "12", "14"],
-        answer: 2
-    }
-];
 
+    const quizCategories = {
+
+    science: [
+        {
+            question: "Which gas do plants use for photosynthesis?",
+            options: ["Oxygen", "Nitrogen", "Carbon dioxide", "Hydrogen"],
+            answer: 2
+        },
+        {
+            question: "What is the SI unit of force?",
+            options: ["Joule", "Newton", "Watt", "Pascal"],
+            answer: 1
+        },
+        {
+            question: "Which organ pumps blood through the body?",
+            options: ["Brain", "Lungs", "Heart", "Kidney"],
+            answer: 2
+        },
+        {
+            question: "What is the basic unit of life?",
+            options: ["Tissue", "Cell", "Organ", "Atom"],
+            answer: 1
+        },
+        {
+            question: "Which planet is closest to the Sun?",
+            options: ["Venus", "Earth", "Mercury", "Mars"],
+            answer: 2
+        }
+    ],
+
+    mathematics: [
+        {
+            question: "What is 12 × 8?",
+            options: ["86", "96", "108", "112"],
+            answer: 1
+        },
+        {
+            question: "What is √144?",
+            options: ["10", "11", "12", "14"],
+            answer: 2
+        },
+        {
+            question: "What is 15²?",
+            options: ["125", "200", "225", "250"],
+            answer: 2
+        },
+        {
+            question: "What is 3/4 + 1/4?",
+            options: ["1/2", "1", "3/4", "2"],
+            answer: 1
+        },
+        {
+            question: "What is the value of 5 + 7 × 2?",
+            options: ["24", "19", "17", "14"],
+            answer: 1
+        }
+    ],
+
+    space: [
+        {
+            question: "Which planet is known as the Red Planet?",
+            options: ["Earth", "Mars", "Jupiter", "Venus"],
+            answer: 1
+        },
+        {
+            question: "What is the largest planet in our Solar System?",
+            options: ["Earth", "Saturn", "Jupiter", "Neptune"],
+            answer: 2
+        },
+        {
+            question: "Which star is at the center of our Solar System?",
+            options: ["Sirius", "Polaris", "The Sun", "Vega"],
+            answer: 2
+        },
+        {
+            question: "Which planet is famous for its prominent rings?",
+            options: ["Mars", "Saturn", "Venus", "Mercury"],
+            answer: 1
+        },
+        {
+            question: "What is Earth's natural satellite?",
+            options: ["Mars", "The Moon", "The Sun", "Venus"],
+            answer: 1
+        }
+    ],
+
+    geography: [
+        {
+            question: "What is the largest ocean on Earth?",
+            options: ["Atlantic", "Indian", "Arctic", "Pacific"],
+            answer: 3
+        },
+        {
+            question: "Which is the largest continent?",
+            options: ["Africa", "Asia", "Europe", "Australia"],
+            answer: 1
+        },
+        {
+            question: "What is the capital of India?",
+            options: ["Mumbai", "New Delhi", "Kolkata", "Chennai"],
+            answer: 1
+        },
+        {
+            question: "Which is the longest river in the world traditionally recognized?",
+            options: ["Amazon", "Nile", "Yangtze", "Ganges"],
+            answer: 1
+        },
+        {
+            question: "How many continents are there?",
+            options: ["5", "6", "7", "8"],
+            answer: 2
+        }
+    ],
+
+    history: [
+        {
+            question: "Who was the first Prime Minister of independent India?",
+            options: [
+                "Mahatma Gandhi",
+                "Jawaharlal Nehru",
+                "Sardar Patel",
+                "B. R. Ambedkar"
+            ],
+            answer: 1
+        },
+        {
+            question: "Who built the Taj Mahal?",
+            options: [
+                "Akbar",
+                "Shah Jahan",
+                "Aurangzeb",
+                "Babur"
+            ],
+            answer: 1
+        },
+        {
+            question: "When did India gain independence?",
+            options: ["1945", "1946", "1947", "1950"],
+            answer: 2
+        },
+        {
+            question: "Who is known as the Father of the Nation in India?",
+            options: [
+                "Subhas Chandra Bose",
+                "Mahatma Gandhi",
+                "Bhagat Singh",
+                "Sardar Patel"
+            ],
+            answer: 1
+        },
+        {
+            question: "Which civilization developed around the Indus River?",
+            options: [
+                "Roman Civilization",
+                "Indus Valley Civilization",
+                "Greek Civilization",
+                "Mayan Civilization"
+            ],
+            answer: 1
+        }
+    ],
+
+    gk: [
+        {
+            question: "How many continents are there?",
+            options: ["5", "6", "7", "8"],
+            answer: 2
+        },
+        {
+            question: "Which is the largest mammal?",
+            options: ["Elephant", "Blue Whale", "Giraffe", "Shark"],
+            answer: 1
+        },
+        {
+            question: "Which country is known as the Land of the Rising Sun?",
+            options: ["China", "Japan", "India", "Thailand"],
+            answer: 1
+        },
+        {
+            question: "How many days are there in a leap year?",
+            options: ["365", "366", "364", "367"],
+            answer: 1
+        },
+        {
+            question: "Which is the fastest land animal?",
+            options: ["Lion", "Horse", "Cheetah", "Tiger"],
+            answer: 2
+        }
+    ]
+
+};
+
+
+let questions = quizCategories.gk;
+];
 
 let currentQuestion = 0;
 let selectedAnswers = new Array(questions.length).fill(null);
